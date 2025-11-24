@@ -590,9 +590,7 @@
                
                 successMessage.style.display = 'block';
                 
-                setTimeout(() => {
-    window.location.href = 'https://send.monobank.ua/jar/iAotyRB15';
-}, 1000);
+      window.open('https://send.monobank.ua/jar/iAotyRB15', '_blank');
             })
             .catch(error => {
                 console.error('❌ Ошибка отправки в Telegram:', error);
