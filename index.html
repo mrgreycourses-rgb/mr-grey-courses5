@@ -492,6 +492,14 @@ overflow-y: auto;
             currentCourse = courseName;
             currentPrice = price;
             currentCourseId = courseId;
+            let paymentUrl = '';
+    if (courseId === '001') {
+        paymentUrl = 'https://send.monobank.ua/jar/87iGHDjBx8';
+    } else if (courseId === '002') {
+        paymentUrl = 'https://send.monobank.ua/jar/iAotyRB15';
+    } else if (courseId === '003') {
+        paymentUrl = 'https://send.monobank.ua/jar/8DtbgApXf6';
+    }
             
             document.getElementById('selectedCourse').value = courseName;
             document.getElementById('selectedPrice').value = price;
@@ -599,7 +607,6 @@ overflow-y: auto;
                 successMessage.style.display = 'block';
                 
                // Универсальное открытие оплаты для всех устройств
-const paymentUrl = 'https://send.monobank.ua/jar/iAotyRB15';
 const newWindow = window.open(paymentUrl, '_blank');
 if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
     window.location.href = paymentUrl;
