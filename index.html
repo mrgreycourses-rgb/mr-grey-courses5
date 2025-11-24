@@ -181,6 +181,8 @@
             width: 90%;
             max-width: 500px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+       max-height: 85vh;
+    -webkit-overflow-scrolling: touch;
         }
 
         .modal-title {
@@ -315,11 +317,10 @@
             .course-image {
                 height: 220px;
             }
-
-     
-        }
-   /* Фикс для мобильного отображения формы */
 @media (max-width: 480px) {
+    body {
+        padding: 20px 15px;
+    }
     .modal-content {
         width: 95%;
         margin: 10px;
@@ -327,23 +328,28 @@
         max-height: 90vh;
         overflow-y: auto;
     }
-    
     .form-input {
         padding: 12px;
         font-size: 16px;
     }
-    
     .submit-button {
         padding: 16px;
         font-size: 16px;
     }
-    
     .instructions {
         padding: 15px;
         font-size: 14px;
         margin: 15px 0;
     }
-} 
+    .modal-title {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+}
+     
     </style>
 </head>
 <body>
@@ -454,15 +460,15 @@
                 </div>
                 
                 <!-- ИНСТРУКЦИИ ПЕРЕД КНОПКОЙ -->
-                <div class="instructions">
-                    <strong>📨 После оплаты:</strong><br><br>
-                    1. Сделайте квитанцию об оплате<br>
-                    <em>(не скриншот!)</em><br><br>
-                    2. Отправьте квитанцию, ФИО и Ваш никнейм в Telegram боту:<br>
-                    <strong>@MrGreyCoursesBot</strong><br><br>
-                    
-                    <strong>🔐 После проверки Вас добавят в Telegram-канал курса.</strong>
-                </div>
+<div class="instructions">
+    <strong>📨 После оплаты:</strong><br><br>
+    1. Сделайте скриншот оплаты<br>
+    2. Отправьте скриншот, ФИО и ваш никнейм в Telegram бота:<br>
+    <a href="https://t.me/MrGreyCoursesBot" target="_blank" style="display: inline-block; background: #0088cc; color: white; padding: 8px 15px; border-radius: 8px; text-decoration: none; font-weight: bold;">
+        @MrGreyCoursesBot
+    </a><br><br>
+    <strong>🔐 После проверки Вас добавят в Telegram-канал курса.</strong>
+</div>
                 
                 <!-- ЗЕЛЕНАЯ КНОПКА КУПИТЬ -->
                 <button type="submit" class="submit-button" id="submitButton">
@@ -581,31 +587,11 @@
                 console.log('✅ Данные отправлены в Telegram:', data);
                 
                 loading.style.display = 'none';
-                successMessage.innerHTML = `
-                    <div style="text-align: center;">
-                        <div style="font-size: 24px; color: #2d5016; margin-bottom: 15px;">✅ Заявка #${formData.applicationNumber} принята!</div>
-                        
-                        <div style="background: white; padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #d4af37;">
-                            <strong>💳 Оплатите ${formData.price} грн:</strong><br>
-                            <a href="https://send.monobank.ua/jar/iAotyRB15" target="_blank" style="color: #d4af37; text-decoration: underline; font-weight: bold;">
-                                https://send.monobank.ua/jar/iAotyRB15
-                            </a>
-                        </div>
-
-                        <div style="color: #666; font-size: 14px; margin-top: 10px;">
-                            Номер вашей заявки: #${formData.applicationNumber}<br>
-                            Сохраните его для связи
-                        </div>
-                    </div>
-                `;
+               
                 successMessage.style.display = 'block';
                 
-              setTimeout(() => {
-    // Для мобильных и десктопов
-    const link = document.createElement('a');
-    link.href = 'https://send.monobank.ua/jar/iAotyRB15';
-    link.target = '_blank';
-    link.click();
+                setTimeout(() => {
+    window.location.href = 'https://send.monobank.ua/jar/iAotyRB15';
 }, 1000);
             })
             .catch(error => {
@@ -633,6 +619,13 @@
         const version = "2.3";
         console.log(`🚀 Mr. Grey Courses v${version}`);
         localStorage.setItem('site_version', version);
+   window.addEventListener('resize', function() {
+    if (document.getElementById('orderModal').style.display === 'flex') {
+        const modal = document.querySelector('.modal-content');
+        modal.scrollTop = 0;
+    }
+});
+   localStorage.setItem('site_version', '2.4');
     </script>
 </body>
 </html>
