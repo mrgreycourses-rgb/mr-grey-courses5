@@ -177,12 +177,12 @@
         .modal-content {
             background: white;
             padding: 40px;
-            max-height: 90vh;
-overflow-y: auto;
             border-radius: 20px;
             width: 90%;
             max-width: 500px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         .modal-title {
@@ -305,43 +305,41 @@ overflow-y: auto;
             }
         }
         
-      @media (max-width: 768px) {
-    .main-title {
-        font-size: 48px;
-    }
-    
-    .course-card {
-        padding: 25px;
-    }
-    
-    .course-image {
-        height: 200px;
-    }
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 48px;
+            }
+            
+            .course-card {
+                padding: 25px;
+            }
+            
+            .course-image {
+                height: 200px;
+            }
 
-    .modal-content {
-        padding: 20px 15px;
-        margin: 10px;
-        max-height: 85vh;
-        overflow-y: auto;
-    }
-    
-    .form-input {
-        padding: 14px;
-        font-size: 16px;
-    }
-    
-    .submit-button {
-        position: sticky;
-        bottom: 10px;
-        margin-top: 20px;
-    }
-    
-    .instructions {
-        padding: 15px;
-        margin: 15px 0;
-        font-size: 14px;
-    }
-}
+            .modal-content {
+                padding: 20px 15px;
+                margin: 10px;
+            }
+            
+            .form-input {
+                padding: 14px;
+                font-size: 16px;
+            }
+            
+            .submit-button {
+                position: sticky;
+                bottom: 10px;
+                margin-top: 20px;
+            }
+            
+            .instructions {
+                padding: 15px;
+                margin: 15px 0;
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -492,14 +490,6 @@ overflow-y: auto;
             currentCourse = courseName;
             currentPrice = price;
             currentCourseId = courseId;
-            let paymentUrl = '';
-    if (courseId === '001') {
-        paymentUrl = 'https://send.monobank.ua/jar/87iGHDjBx8';
-    } else if (courseId === '002') {
-        paymentUrl = 'https://send.monobank.ua/jar/iAotyRB15';
-    } else if (courseId === '003') {
-        paymentUrl = 'https://send.monobank.ua/jar/8DtbgApXf6';
-    }
             
             document.getElementById('selectedCourse').value = courseName;
             document.getElementById('selectedPrice').value = price;
@@ -606,21 +596,21 @@ overflow-y: auto;
                 `;
                 successMessage.style.display = 'block';
                 
-              // Определяем ссылку для оплаты
-let paymentUrl = '';
-if (currentCourseId === '001') {
-    paymentUrl = 'https://send.monobank.ua/jar/87iGHDjBx8';
-} else if (currentCourseId === '002') {
-    paymentUrl = 'https://send.monobank.ua/jar/iAotyRB15';
-} else if (currentCourseId === '003') {
-    paymentUrl = 'https://send.monobank.ua/jar/8DtbgApXf6';
-}
+                // Определяем ссылку для оплаты
+                let paymentUrl = 'https://send.monobank.ua/jar/iAotyRB15';
+                if (formData.courseId === '001') {
+                    paymentUrl = 'https://send.monobank.ua/jar/87iGHDjBx8';
+                } else if (formData.courseId === '002') {
+                    paymentUrl = 'https://send.monobank.ua/jar/iAotyRB15';
+                } else if (formData.courseId === '003') {
+                    paymentUrl = 'https://send.monobank.ua/jar/8DtbgApXf6';
+                }
 
-// Открываем оплату
-const newWindow = window.open(paymentUrl, '_blank');
-if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
-    window.location.href = paymentUrl;
-}
+                // Открываем оплату
+                const newWindow = window.open(paymentUrl, '_blank');
+                if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+                    window.location.href = paymentUrl;
+                }
             })
             .catch(error => {
                 console.error('❌ Ошибка отправки в Telegram:', error);
@@ -643,8 +633,8 @@ if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
             }
         });
 
-        // Mr. Grey Courses v2.3 - автоматическое обновление кэша
-        const version = "2.3";
+        // Mr. Grey Courses v2.5 - автоматическое обновление кэша
+        const version = "2.5";
         console.log(`🚀 Mr. Grey Courses v${version}`);
         localStorage.setItem('site_version', version);
     </script>
