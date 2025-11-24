@@ -593,16 +593,21 @@ successMessage.innerHTML = `
         
         <div style="background: white; padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #d4af37;">
             <strong>💳 Оплатите ${formData.price} грн:</strong><br>
-            <a href="https://send.monobank.ua/jar/iAotyRB15" target="_blank" style="color: #d4af37; text-decoration: underline; font-weight: bold;">
-                https://send.monobank.ua/jar/iAotyRB15
-            </a>
+            
+            <!-- СПОСОБ 1: КНОПКА -->
+            <button onclick="window.open('https://send.monobank.ua/jar/iAotyRB15', '_blank', 'noopener,noreferrer')" 
+                    style="background: #d4af37; color: white; padding: 15px 30px; border: none; border-radius: 10px; font-size: 18px; font-weight: 600; cursor: pointer; margin: 10px 0; width: 100%;">
+                💳 Нажмите чтобы оплатить
+            </button>
+            
+            <!-- СПОСОБ 2: ССЫЛКА -->
+            <div style="margin-top: 10px;">
+                <strong>Или перейдите по ссылке:</strong><br>
+                <a href="https://send.monobank.ua/jar/iAotyRB15" target="_blank" rel="noopener noreferrer" style="color: #d4af37; text-decoration: underline;">
+                    https://send.monobank.ua/jar/iAotyRB15
+                </a>
+            </div>
         </div>
-
-        <!-- КНОПКА ДЛЯ МОБИЛЬНЫХ -->
-        <button onclick="window.open('https://send.monobank.ua/jar/iAotyRB15', '_blank')" 
-                style="background: #d4af37; color: white; padding: 15px 30px; border: none; border-radius: 10px; font-size: 18px; font-weight: 600; cursor: pointer; margin: 10px 0; width: 100%;">
-            💳 Перейти к оплате
-        </button>
 
         <div style="color: #666; font-size: 14px; margin-top: 10px;">
             Номер вашей заявки: #${formData.applicationNumber}<br>
@@ -611,7 +616,6 @@ successMessage.innerHTML = `
     </div>
 `;
 successMessage.style.display = 'block';
-
 // Убираем автоматический редирект - оставляем только кнопку
 // setTimeout(() => {
 //     window.location.href = 'https://send.monobank.ua/jar/iAotyRB15';
