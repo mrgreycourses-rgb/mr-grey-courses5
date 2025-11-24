@@ -598,9 +598,12 @@ overflow-y: auto;
                 `;
                 successMessage.style.display = 'block';
                 
-                setTimeout(() => {
-                    window.open('https://send.monobank.ua/jar/iAotyRB15', '_blank');
-                }, 1500);
+               // Универсальное открытие оплаты для всех устройств
+const paymentUrl = 'https://send.monobank.ua/jar/iAotyRB15';
+const newWindow = window.open(paymentUrl, '_blank');
+if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+    window.location.href = paymentUrl;
+}
             })
             .catch(error => {
                 console.error('❌ Ошибка отправки в Telegram:', error);
