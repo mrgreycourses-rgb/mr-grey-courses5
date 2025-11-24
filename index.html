@@ -606,7 +606,17 @@ overflow-y: auto;
                 `;
                 successMessage.style.display = 'block';
                 
-               // Универсальное открытие оплаты для всех устройств
+              // Определяем ссылку для оплаты
+let paymentUrl = '';
+if (currentCourseId === '001') {
+    paymentUrl = 'https://send.monobank.ua/jar/87iGHDjBx8';
+} else if (currentCourseId === '002') {
+    paymentUrl = 'https://send.monobank.ua/jar/iAotyRB15';
+} else if (currentCourseId === '003') {
+    paymentUrl = 'https://send.monobank.ua/jar/8DtbgApXf6';
+}
+
+// Открываем оплату
 const newWindow = window.open(paymentUrl, '_blank');
 if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
     window.location.href = paymentUrl;
