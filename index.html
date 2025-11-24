@@ -586,13 +586,36 @@
             .then(data => {
                 console.log('✅ Данные отправлены в Telegram:', data);
                 
-                loading.style.display = 'none';
-               
-                successMessage.style.display = 'block';
-                
-                setTimeout(() => {
-    window.location.href = 'https://send.monobank.ua/jar/iAotyRB15';
-}, 1000);
+              loading.style.display = 'none';
+successMessage.innerHTML = `
+    <div style="text-align: center;">
+        <div style="font-size: 24px; color: #2d5016; margin-bottom: 15px;">✅ Заявка #${formData.applicationNumber} принята!</div>
+        
+        <div style="background: white; padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #d4af37;">
+            <strong>💳 Оплатите ${formData.price} грн:</strong><br>
+            <a href="https://send.monobank.ua/jar/iAotyRB15" target="_blank" style="color: #d4af37; text-decoration: underline; font-weight: bold;">
+                https://send.monobank.ua/jar/iAotyRB15
+            </a>
+        </div>
+
+        <!-- КНОПКА ДЛЯ МОБИЛЬНЫХ -->
+        <button onclick="window.open('https://send.monobank.ua/jar/iAotyRB15', '_blank')" 
+                style="background: #d4af37; color: white; padding: 15px 30px; border: none; border-radius: 10px; font-size: 18px; font-weight: 600; cursor: pointer; margin: 10px 0; width: 100%;">
+            💳 Перейти к оплате
+        </button>
+
+        <div style="color: #666; font-size: 14px; margin-top: 10px;">
+            Номер вашей заявки: #${formData.applicationNumber}<br>
+            Сохраните его для связи
+        </div>
+    </div>
+`;
+successMessage.style.display = 'block';
+
+// Убираем автоматический редирект - оставляем только кнопку
+// setTimeout(() => {
+//     window.location.href = 'https://send.monobank.ua/jar/iAotyRB15';
+// }, 1000);
             })
             .catch(error => {
                 console.error('❌ Ошибка отправки в Telegram:', error);
