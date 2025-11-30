@@ -161,6 +161,21 @@
             transform: translateY(-2px);
         }
 
+        /* Стили для неактивных кнопок */
+        .coming-soon-button {
+            width: 100%;
+            background: #cccccc;
+            color: #666666;
+            padding: 18px;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: auto;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -349,27 +364,7 @@
         </div>
 
         <div class="courses-grid">
-            <div class="course-card">
-                <img src="https://i.postimg.cc/GH2nrV5N/photo-2024-12-18-20-30-47.jpg" 
-                     alt="Секреты Богатства" 
-                     class="course-image">
-                <h2 class="course-title">Секреты Богатства</h2>
-                <div class="course-price">
-                    <span class="old-price">5000 грн</span>
-                    <span class="new-price">499 грн</span>
-                </div>
-                <ul class="topics-list">
-                    <li>Мышление миллионера</li>
-                    <li>Пассивный доход</li>
-                    <li>Инвестиции для начинающих</li>
-                    <li>Финансовая грамотность</li>
-                    <li>Создание денежных потоков</li>
-                </ul>
-                <button class="buy-button" onclick="openOrderForm('Секреты Богатства', 499, '001')">
-                    Купить курс
-                </button>
-            </div>
-
+            <!-- ПЕРВЫЙ КУРС - АКТИВНЫЙ -->
             <div class="course-card">
                 <img src="https://i.postimg.cc/217JPfQX/photo-2024-12-18-20-31-36.jpg" 
                      alt="Твоё Предназначение" 
@@ -391,6 +386,29 @@
                 </button>
             </div>
 
+            <!-- ВТОРОЙ КУРС - НЕАКТИВНЫЙ -->
+            <div class="course-card">
+                <img src="https://i.postimg.cc/GH2nrV5N/photo-2024-12-18-20-30-47.jpg" 
+                     alt="Секреты Богатства" 
+                     class="course-image">
+                <h2 class="course-title">Секреты Богатства</h2>
+                <div class="course-price">
+                    <span class="old-price">5000 грн</span>
+                    <span class="new-price">499 грн</span>
+                </div>
+                <ul class="topics-list">
+                    <li>Мышление миллионера</li>
+                    <li>Пассивный доход</li>
+                    <li>Инвестиции для начинающих</li>
+                    <li>Финансовая грамотность</li>
+                    <li>Создание денежных потоков</li>
+                </ul>
+                <button class="coming-soon-button" disabled>
+                    Скоро в продаже
+                </button>
+            </div>
+
+            <!-- ТРЕТИЙ КУРС - НЕАКТИВНЫЙ -->
             <div class="course-card">
                 <img src="https://i.postimg.cc/R6D2XQcs/photo-2024-12-18-20-31-23.jpg" 
                      alt="Как достигать Цели" 
@@ -407,8 +425,8 @@
                     <li>Мотивация и привычки</li>
                     <li>Анализ результатов</li>
                 </ul>
-                <button class="buy-button" onclick="openOrderForm('Как достигать Цели', 399, '003')">
-                    Купить курс
+                <button class="coming-soon-button" disabled>
+                    Скоро в продаже
                 </button>
             </div>
         </div>
@@ -637,8 +655,8 @@
             }
         });
 
-        // Mr. Grey Courses v2.5 - автоматическое обновление кэша
-        const version = "2.5";
+        // Mr. Grey Courses v2.6 - изменен порядок курсов
+        const version = "2.6";
         console.log(`🚀 Mr. Grey Courses v${version}`);
         localStorage.setItem('site_version', version);
     </script>
