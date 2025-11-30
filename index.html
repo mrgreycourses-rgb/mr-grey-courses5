@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mr. Grey Billionaire</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>">
+    
+    <!-- HTTPS шрифты -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap">
+    
+    <!-- Безопасные политики для Safari -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: 'unsafe-inline' 'unsafe-eval' data: blob:; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; img-src 'self' https://i.postimg.cc data: blob:;">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
@@ -503,6 +517,20 @@
     </div>
 
     <script>
+        // Safari detection and cache busting
+        if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
+            const currentVersion = "2.7";
+            const savedVersion = localStorage.getItem('site_version');
+            
+            if (savedVersion !== currentVersion) {
+                localStorage.setItem('site_version', currentVersion);
+                if (performance.navigation.type === 1) {
+                    console.log('Safari: forcing cache refresh for new version');
+                    location.reload(true);
+                }
+            }
+        }
+
         let currentCourse = '';
         let currentPrice = 0;
         let currentCourseId = '';
@@ -655,9 +683,9 @@
             }
         });
 
-        // Mr. Grey Courses v2.6 - изменен порядок курсов
-        const version = "2.6";
-        console.log(`🚀 Mr. Grey Courses v${version}`);
+        // Mr. Grey Courses v2.7 - исправлено для Safari
+        const version = "2.7";
+        console.log(`🚀 Mr. Grey Courses v${version} - Safari optimized`);
         localStorage.setItem('site_version', version);
     </script>
 </body>
