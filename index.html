@@ -492,7 +492,7 @@
                 </button>
             </div>
 
-            <!-- ВТОРОЙ КУРС - НЕАКТИВНЫЙ -->
+            <!-- ВТОРОЙ КУРС - АКТИВНЫЙ -->
             <div class="course-card">
                 <img src="https://i.postimg.cc/GH2nrV5N/photo-2024-12-18-20-30-47.jpg" 
                      alt="Секреты Богатства" 
@@ -861,14 +861,17 @@
                 `;
                 successMessage.style.display = 'block';
                 
-                // ОПРЕДЕЛЯЕМ ССЫЛКУ ДЛЯ ОПЛАТЫ - ВСЕ ССЫЛКИ ДОБАВЛЕНЫ
-                let paymentUrl = 'https://send.monobank.ua/jar/iAotyRB15';
+               // ОПРЕДЕЛЯЕМ ССЫЛКУ ДЛЯ ОПЛАТЫ - ВСЕ ССЫЛКИ ДОБАВЛЕНЫ
+                let paymentUrl = '';
+                
                 if (formData.courseId === '001') {
-                    paymentUrl = 'https://send.monobank.ua/jar/87iGHDjBx8';
+                    paymentUrl = 'https://send.monobank.ua/jar/87iGHDjBx8'; // Секреты Богатства
                 } else if (formData.courseId === '002') {
-                    paymentUrl = 'https://send.monobank.ua/jar/iAotyRB15';
+                    paymentUrl = 'https://send.monobank.ua/jar/iAotyRB15'; // Твоё Предназначение
                 } else if (formData.courseId === '003') {
-                    paymentUrl = 'https://send.monobank.ua/jar/8DtbgApXf6';
+                    paymentUrl = 'https://send.monobank.ua/jar/8DtbgApXf6'; // Как достигать Цели
+                } else {
+                    paymentUrl = 'https://send.monobank.ua/jar/iAotyRB15'; // Запасная ссылка на случай ошибки
                 }
 
                 // Открываем оплату
