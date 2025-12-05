@@ -861,8 +861,8 @@
                 `;
                 successMessage.style.display = 'block';
                 
-               // ОПРЕДЕЛЯЕМ ССЫЛКУ ДЛЯ ОПЛАТЫ - ВСЕ ССЫЛКИ ДОБАВЛЕНЫ
-                let paymentUrl = '';
+               // ОПРЕДЕЛЯЕМ ССЫЛКУ ДЛЯ ОПЛАТЫ
+                let paymentUrl;
                 
                 if (formData.courseId === '001') {
                     paymentUrl = 'https://send.monobank.ua/jar/87iGHDjBx8'; // Секреты Богатства
@@ -871,7 +871,7 @@
                 } else if (formData.courseId === '003') {
                     paymentUrl = 'https://send.monobank.ua/jar/8DtbgApXf6'; // Как достигать Цели
                 } else {
-                    paymentUrl = 'https://send.monobank.ua/jar/iAotyRB15'; // Запасная ссылка на случай ошибки
+                    paymentUrl = 'https://send.monobank.ua/jar/iAotyRB15'; // Запасная ссылка
                 }
 
                 // Открываем оплату
