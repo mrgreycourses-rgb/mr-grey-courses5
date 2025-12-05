@@ -861,17 +861,17 @@
                 `;
                 successMessage.style.display = 'block';
                 
-               // ОПРЕДЕЛЯЕМ ССЫЛКУ ДЛЯ ОПЛАТЫ
-                let paymentUrl;
+              // ОПРЕДЕЛЯЕМ ССЫЛКУ ДЛЯ ОПЛАТЫ
+                let paymentUrl = 'https://send.monobank.ua/jar/iAotyRB15'; // значение по умолчанию
                 
                 if (formData.courseId === '001') {
                     paymentUrl = 'https://send.monobank.ua/jar/87iGHDjBx8'; // Секреты Богатства
-                } else if (formData.courseId === '002') {
+                } 
+                if (formData.courseId === '002') {
                     paymentUrl = 'https://send.monobank.ua/jar/iAotyRB15'; // Твоё Предназначение
-                } else if (formData.courseId === '003') {
+                }
+                if (formData.courseId === '003') {
                     paymentUrl = 'https://send.monobank.ua/jar/8DtbgApXf6'; // Как достигать Цели
-                } else {
-                    paymentUrl = 'https://send.monobank.ua/jar/iAotyRB15'; // Запасная ссылка
                 }
 
                 // Открываем оплату
