@@ -570,11 +570,6 @@
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label" for="email">Email *</label>
-                    <input type="email" id="email" name="email" class="form-input" required placeholder="your@email.com">
-                </div>
-                
-                <div class="form-group">
                     <label class="form-label" for="telegram">Telegram *</label>
                     <input type="text" id="telegram" name="telegram" class="form-input" required placeholder="@username">
                 </div>
@@ -691,7 +686,7 @@
                 content: `
                     <h3>1. СОБИРАЕМАЯ ИНФОРМАЦИЯ</h3>
                     <ul>
-                        <li>ФИО, email, телефон, Telegram аккаунт</li>
+                        <li>ФИО, телефон, Telegram аккаунт</li>
                         <li>Данные о пройденных уроках и прогрессе</li>
                     </ul>
 
@@ -797,7 +792,6 @@
                 applicationId: applicationId,
                 fullName: document.getElementById('fullName').value,
                 phone: document.getElementById('phone').value,
-                email: document.getElementById('email').value,
                 telegram: document.getElementById('telegram').value,
                 course: currentCourse,
                 courseId: currentCourseId,
@@ -811,7 +805,6 @@
 ──────────────
 👤 ФИО: ${formData.fullName}
 📞 Телефон: ${formData.phone}
-📧 Email: ${formData.email}
 📱 Telegram: ${formData.telegram}
 🎓 Курс: ${formData.course}
 💰 Сумма: ${formData.price} грн
