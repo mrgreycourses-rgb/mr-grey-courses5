@@ -649,11 +649,21 @@
                 }
             }
         }
+// СОХРАНЕНИЕ СЧЕТЧИКА ЗАЯВОК В LOCALSTORAGE
+// Проверяем, есть ли уже сохраненный счетчик
+let applicationCounter = parseInt(localStorage.getItem('mrGreyAppCounter')) || 1;
 
+// Функция для получения и увеличения номера заявки
+function getNextApplicationNumber() {
+    const nextNumber = applicationCounter;
+    applicationCounter++; // Увеличиваем для следующей заявки
+    // Сохраняем новое значение в localStorage
+    localStorage.setItem('mrGreyAppCounter', applicationCounter.toString());
+    return String(nextNumber).padStart(3, '0'); // Возвращаем в формате 001
+}
         let currentCourse = '';
         let currentPrice = 0;
         let currentCourseId = '';
-        let applicationCounter = 1;
 
         // Тексты документов
         const documents = {
@@ -782,7 +792,7 @@
             successMessage.style.display = 'none';
             errorMessage.style.display = 'none';
             
-            const applicationNumber = String(applicationCounter++).padStart(3, '0');
+           const applicationNumber = getNextApplicationNumber();
             const currentDate = new Date();
             const dateString = `${String(currentDate.getDate()).padStart(2, '0')}${String(currentDate.getMonth() + 1).padStart(2, '0')}`;
             const applicationId = `${applicationNumber}_${dateString}`;
