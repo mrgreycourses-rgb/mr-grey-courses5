@@ -1,741 +1,262 @@
+
+```html
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mr. Grey Billionaire</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            background: #f5f1e8;
-            font-family: 'Inter', sans-serif;
-            color: #1a1a1a;
-            line-height: 1.6;
-            padding: 40px 20px;
-            min-height: 100vh;
-        }
-        
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-        
-        .main-title {
-            font-family: 'Dancing Script', cursive;
-            font-size: 82px;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 20px;
-            overflow: hidden;
-            white-space: nowrap;
-            animation: typing 3.5s steps(40, end) forwards;
-            width: 0;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-        
-        .courses-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-        
-        .course-card {
-            background: #ffffff;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            border: 1px solid #e8e2d6;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .course-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
-        }
-        
-        .course-image {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            transition: transform 0.3s ease;
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
-        }
-        
-        .course-card:hover .course-image {
-            transform: scale(1.05);
-        }
-        
-        .course-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 20px;
-        }
-        
-        .course-price {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-        
-        .old-price {
-            font-size: 20px;
-            color: #999;
-            text-decoration: line-through;
-        }
-        
-        .new-price {
-            font-size: 32px;
-            font-weight: 700;
-            color: #d4af37;
-        }
-        
-        .topics-list {
-            list-style: none;
-            margin-bottom: 30px;
-            flex-grow: 1;
-        }
-        
-        .topics-list li {
-            padding: 8px 0;
-            border-bottom: 1px solid #f0f0f0;
-            position: relative;
-            padding-left: 20px;
-        }
-        
-        .topics-list li:before {
-            content: "—";
-            position: absolute;
-            left: 0;
-            color: #d4af37;
-        }
-        
-        .topics-list li:last-child {
-            border-bottom: none;
-        }
-        
-        .buy-button {
-            width: 100%;
-            background: #d4af37;
-            color: white;
-            padding: 18px;
-            border: none;
-            border-radius: 12px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: auto;
-        }
-        
-        .buy-button:hover {
-            background: #c19b2a;
-            transform: translateY(-2px);
-        }
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mr. Grey Billionaire</title>
+<link href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>" rel="icon"/>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #f5f1e8; font-family: 'Inter', sans-serif; color: #1a1a1a; line-height: 1.6; padding: 40px 20px; min-height: 100vh; }
+    .container { max-width: 1400px; margin: 0 auto; }
+    .header { text-align: center; margin-bottom: 80px; }
+    .main-title { font-family: 'Dancing Script', cursive; font-size: 82px; font-weight: 700; color: #1a1a1a; margin-bottom: 20px; overflow: hidden; white-space: nowrap; animation: typing 3.5s steps(40, end) forwards; width: 0; margin: 0 auto; text-align: center; }
+    @keyframes typing { from { width: 0 } to { width: 100% } }
+    .courses-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 60px; }
+    .course-card { background: #fff; border-radius: 20px; padding: 40px; box-shadow: 0 10px 40px rgba(0,0,0,.08); border: 1px solid #e8e2d6; transition: all .3s ease; display: flex; flex-direction: column; }
+    .course-card:hover { transform: translateY(-10px); box-shadow: 0 20px 60px rgba(0,0,0,.12); }
+    .course-image { width: 100%; height: 280px; object-fit: cover; object-position: center; border-radius: 12px; margin-bottom: 30px; transition: transform .3s ease; border: 1px solid rgba(184,134,11,.28); box-shadow: 0 8px 22px rgba(80,58,10,.12); }
+    .course-card:hover .course-image { transform: scale(1.05); }
+    .course-title { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: #1a1a1a; margin-bottom: 20px; }
+    .course-price { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; }
+    .old-price { font-size: 20px; color: #999; text-decoration: line-through; }
+    .new-price { font-size: 32px; font-weight: 700; color: #b8860b; text-shadow: 0 1px 0 rgba(255,255,255,.45); }
+    .topics-list { list-style: none; margin-bottom: 30px; flex-grow: 1; }
+    .topics-list li { padding: 5px 0; border-bottom: 1px solid #f0f0f0; position: relative; padding-left: 20px; }
+    .topics-list li:before { content: "✓"; position: absolute; left: 0; color: #b8860b; font-weight: 700; }
+    .topics-list li:last-child { border-bottom: none; }
+    .buy-button, .submit-button { width: 100%; background: linear-gradient(135deg, #f5d76e 0%, #d4af37 48%, #b8860b 100%); color: #fff; padding: 18px; border: none; border-radius: 12px; font-size: 18px; font-weight: 600; cursor: pointer; transition: all .3s ease; }
+    .buy-button { margin-top: auto; }
+    .buy-button:hover, .submit-button:hover { background: linear-gradient(135deg, #ffe58a 0%, #d4af37 48%, #9c7100 100%); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(184,134,11,.25); }
+    .modal { display: none; position: fixed; z-index: 1000; inset: 0; width: 100%; height: 100%; background: rgba(0,0,0,.8); justify-content: center; align-items: center; padding: 15px; }
+    .modal-content { background: white; padding: 40px; border-radius: 20px; width: 90%; max-width: 500px; box-shadow: 0 20px 60px rgba(0,0,0,.3); max-height: 90vh; overflow-y: auto; }
+    .docs-modal .modal-content { max-width: 800px; max-height: 85vh; }
+    .modal-title { font-family: 'Playfair Display', serif; font-size: 28px; margin-bottom: 25px; text-align: center; color: #1a1a1a; }
+    .docs-content { max-height: 60vh; overflow-y: auto; padding: 20px; background: #f9f9f9; border-radius: 10px; margin-bottom: 20px; line-height: 1.6; }
+    .docs-content h3 { color: #d4af37; margin: 20px 0 10px; font-size: 18px; }
+    .docs-content p { margin-bottom: 15px; }
+    .docs-content ul { margin-bottom: 15px; padding-left: 20px; }
+    .form-group { margin-bottom: 20px; }
+    .form-label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; }
+    .form-input { width: 100%; padding: 15px; border: 2px solid #e8e2d6; border-radius: 10px; font-size: 16px; transition: border-color .3s ease; }
+    .form-input:focus { outline: none; border-color: #d4af37; }
+    .checkbox-group { display: flex; align-items: flex-start; gap: 10px; margin: 20px 0; padding: 15px; background: #f8f9fa; border-radius: 10px; }
+    .checkbox-group input[type="checkbox"] { margin-top: 3px; transform: scale(1.2); }
+    .checkbox-group label { font-size: 14px; line-height: 1.4; }
+    .checkbox-group a { color: #d4af37; text-decoration: none; cursor: pointer; }
+    .checkbox-group a:hover { text-decoration: underline; }
+    .submit-button { margin-top: 10px; }
+    .submit-button:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+    .close { float: right; font-size: 28px; font-weight: bold; cursor: pointer; color: #999; line-height: 1; }
+    .close:hover { color: #333; }
+    .loading { display: none; text-align: center; color: #d4af37; margin-top: 10px; }
+    .success-message { display: none; background: #d4ffd4; color: #2d5016; padding: 20px; border-radius: 10px; margin-top: 15px; text-align: center; line-height: 1.6; }
+    .error-message { display: none; background: #ffd4d4; color: #501616; padding: 15px; border-radius: 10px; margin-top: 15px; text-align: center; }
+    .instructions { background: #fff8e1; padding: 20px; border-radius: 10px; margin: 20px 0; text-align: left; border-left: 4px solid #d4af37; }
+    .footer { text-align: center; padding: 40px 20px; margin-top: 50px; border-top: 1px solid #e8e2d6; background: #f9f9f9; }
+    .footer-links { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-bottom: 20px; }
+    .footer-link { color: #666; text-decoration: none; font-size: 14px; cursor: pointer; transition: color .3s ease; }
+    .footer-link:hover { color: #d4af37; }
+    .copyright { color: #999; font-size: 12px; }
+    @media (max-width: 1200px) { .courses-grid { grid-template-columns: 1fr; max-width: 600px; margin: 0 auto 60px; } .main-title { font-size: 62px; } }
+    @media (max-width: 768px) { body { padding: 25px 14px; } .header { margin-bottom: 45px; } .main-title { font-size: 42px; } .course-card { padding: 25px; } .course-image { height: 200px; } .modal-content { padding: 20px 15px; margin: 10px; } .docs-modal .modal-content { padding: 20px; } .docs-content { padding: 15px; font-size: 14px; } .form-input { padding: 14px; font-size: 16px; } .instructions { padding: 15px; margin: 15px 0; font-size: 14px; } .footer-links { gap: 20px; flex-direction: column; } }
 
-        /* Стили для неактивных кнопок */
-        .coming-soon-button {
-            width: 100%;
-            background: #cccccc;
-            color: #666666;
-            padding: 18px;
-            border: none;
-            border-radius: 12px;
-            font-size: 18px;
-            font-weight: 600;
-            margin-top: auto;
-            cursor: not-allowed;
-            opacity: 0.7;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .docs-modal .modal-content {
-            max-width: 800px;
-            max-height: 85vh;
-        }
-
-        .modal-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            margin-bottom: 25px;
-            text-align: center;
-            color: #1a1a1a;
-        }
-
-        .docs-content {
-            max-height: 60vh;
-            overflow-y: auto;
-            padding: 20px;
-            background: #f9f9f9;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .docs-content h3 {
-            color: #d4af37;
-            margin: 20px 0 10px 0;
-            font-size: 18px;
-        }
-
-        .docs-content p {
-            margin-bottom: 15px;
-        }
-
-        .docs-content ul {
-            margin-bottom: 15px;
-            padding-left: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e8e2d6;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: #d4af37;
-        }
-
-        .checkbox-group {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            margin: 20px 0;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 10px;
-        }
-
-        .checkbox-group input[type="checkbox"] {
-            margin-top: 3px;
-            transform: scale(1.2);
-        }
-
-        .checkbox-group label {
-            font-size: 14px;
-            line-height: 1.4;
-        }
-
-        .checkbox-group a {
-            color: #d4af37;
-            text-decoration: none;
-        }
-
-        .checkbox-group a:hover {
-            text-decoration: underline;
-        }
-
-        .submit-button {
-            width: 100%;
-            background: #d4af37;
-            color: white;
-            padding: 18px;
-            border: none;
-            border-radius: 12px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-        }
-
-        .submit-button:hover {
-            background: #c19b2a;
-            transform: translateY(-2px);
-        }
-
-        .submit-button:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .close {
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            color: #999;
-            line-height: 1;
-        }
-
-        .close:hover {
-            color: #333;
-        }
-
-        .loading {
-            display: none;
-            text-align: center;
-            color: #d4af37;
-            margin-top: 10px;
-        }
-
-        .success-message {
-            display: none;
-            background: #d4ffd4;
-            color: #2d5016;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 15px;
-            text-align: center;
-            line-height: 1.6;
-        }
-
-        .error-message {
-            display: none;
-            background: #ffd4d4;
-            color: #501616;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 15px;
-            text-align: center;
-        }
-        
-        .instructions {
-            background: #fff8e1;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            text-align: left;
-            border-left: 4px solid #d4af37;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 50px;
-            border-top: 1px solid #e8e2d6;
-            background: #f9f9f9;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-
-        .footer-link {
-            color: #666;
-            text-decoration: none;
-            font-size: 14px;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .footer-link:hover {
-            color: #d4af37;
-        }
-
-        .copyright {
-            color: #999;
-            font-size: 12px;
-        }
-        
-        @media (max-width: 1200px) {
-            .courses-grid {
-                grid-template-columns: 1fr;
-                max-width: 600px;
-                margin: 0 auto 60px;
-            }
-            
-            .main-title {
-                font-size: 62px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .main-title {
-                font-size: 48px;
-            }
-            
-            .course-card {
-                padding: 25px;
-            }
-            
-            .course-image {
-                height: 200px;
-            }
-
-            .modal-content {
-                padding: 20px 15px;
-                margin: 10px;
-            }
-
-            .docs-modal .modal-content {
-                padding: 20px;
-            }
-
-            .docs-content {
-                padding: 15px;
-                font-size: 14px;
-            }
-            
-            .form-input {
-                padding: 14px;
-                font-size: 16px;
-            }
-            
-            .submit-button {
-                position: sticky;
-                bottom: 10px;
-                margin-top: 20px;
-            }
-            
-            .instructions {
-                padding: 15px;
-                margin: 15px 0;
-                font-size: 14px;
-            }
-
-            .footer-links {
-                gap: 20px;
-                flex-direction: column;
-            }
-        }
-    </style>
+    .footer-benefits { display: grid; grid-template-columns: repeat(3, 1fr); max-width: 850px; margin: 0 auto 28px; gap: 18px; }
+    .footer-benefit { color: #4b3820; font-family: 'Playfair Display', serif; font-size: 18px; padding: 12px; border-right: 1px solid #c59a36; }
+    .footer-benefit:last-child { border-right: 0; }
+    .footer-benefit-icon { display: block; color: #b8860b; font-size: 28px; margin-bottom: 5px; }
+    .footer-slogan { color: #8b5e18; font-family: 'Dancing Script', cursive; font-size: 30px; margin: 10px auto 24px; }
+    @media (max-width: 600px) { .footer-benefits { grid-template-columns: 1fr; gap: 4px; } .footer-benefit { border-right: 0; border-bottom: 1px solid #e3d2aa; } .footer-slogan { font-size: 25px; } }
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1 class="main-title">Mr. Grey Billionaire</h1>
+<div class="container">
+<div class="header"><h1 class="main-title">Mr. Grey Billionaire</h1></div>
+<div class="courses-grid">
+
+    <!-- КУРС 1: ТВОЁ ПРЕДНАЗНАЧЕНИЕ -->
+    <div class="course-card">
+        <img alt="Иллюстрация курса «Твоё Предназначение»" class="course-image" loading="lazy" src="https://i.postimg.cc/vT3GDd65/IMG-0389.jpg"/>
+        <h2 class="course-title">Твоё Предназначение</h2>
+        <div class="course-price">
+            <span class="old-price">2000 грн</span>
+            <span class="new-price">299 грн</span>
         </div>
-
-        <div class="courses-grid">
-            <!-- ПЕРВЫЙ КУРС - АКТИВНЫЙ -->
-            <div class="course-card">
-                <img src="https://i.postimg.cc/217JPfQX/photo-2024-12-18-20-31-36.jpg" 
-                     alt="Твоё Предназначение" 
-                     class="course-image">
-                <h2 class="course-title">Твоё Предназначение</h2>
-                <div class="course-price">
-                    <span class="old-price">2000 грн</span>
-                    <span class="new-price">299 грн</span>
-                </div>
-                <ul class="topics-list">
-                    <li>Поиск своих талантов</li>
-                    <li>Миссия и цели жизни</li>
-                    <li>Преодоление страхов</li>
-                    <li>Карьерный путь</li>
-                    <li>Баланс жизни и работы</li>
-                </ul>
-                <button class="buy-button" onclick="openOrderForm('Твоё Предназначение', 299, '002')">
-                    Купить курс
-                </button>
-            </div>
-
-            <!-- ВТОРОЙ КУРС - АКТИВНЫЙ -->
-            <div class="course-card">
-                <img src="https://i.postimg.cc/GH2nrV5N/photo-2024-12-18-20-30-47.jpg" 
-                     alt="Секреты Богатства" 
-                     class="course-image">
-                <h2 class="course-title">Секреты Богатства</h2>
-                <div class="course-price">
-                    <span class="old-price">5000 грн</span>
-                    <span class="new-price">499 грн</span>
-                </div>
-                <ul class="topics-list">
-                    <li>Мышление миллионера</li>
-                    <li>Пассивный доход</li>
-                    <li>Инвестиции для начинающих</li>
-                    <li>Финансовая грамотность</li>
-                    <li>Создание денежных потоков</li>
-                </ul>
-             <button class="buy-button" onclick="openOrderForm('Секреты Богатства', 499, '001')">
-    Купить курс
-</button>   
-            </div>
-
-            <!-- ТРЕТИЙ КУРС - АКТИВНЫЙ -->
-            <div class="course-card">
-                <img src="https://i.postimg.cc/R6D2XQcs/photo-2024-12-18-20-31-23.jpg" 
-                     alt="Как достигать Цели" 
-                     class="course-image">
-                <h2 class="course-title">Как достигать Цели</h2>
-                <div class="course-price">
-                    <span class="old-price">3000 грн</span>
-                    <span class="new-price">399 грн</span>
-                </div>
-                <ul class="topics-list">
-                    <li>Постановка целей</li>
-                    <li>Планирование и дисциплина</li>
-                    <li>Преодоление прокрастинации</li>
-                    <li>Мотивация и привычки</li>
-                    <li>Анализ результатов</li>
-                </ul>
-               <button class="buy-button" onclick="openOrderForm('Как достигать Цели', 399, '003')">
-    Купить курс
-</button>
-            </div>
-        </div>
+        <ul class="topics-list">
+            <li>Как найти своё предназначение</li>
+            <li>Как раскрыть свой потенциал</li>
+            <li>Как жить осознанно</li>
+            <li>Как определить миссию и цели жизни</li>
+            <li>Как найти свой путь и призвание</li>
+            <li>Как обрести внутреннюю гармонию</li>
+            <li>Как реализовать себя в жизни</li>
+        </ul>
+        <button class="buy-button" onclick="openOrderForm('Твоё Предназначение', 299, '002')">Купить курс</button>
     </div>
 
-    <!-- Футер с документами -->
-    <div class="footer">
-        <div class="footer-links">
-            <a class="footer-link" onclick="openDocumentModal('offer')">📄 Публичная оферта</a>
-            <a class="footer-link" onclick="openDocumentModal('privacy')">🔒 Политика конфиденциальности</a>
-            <a class="footer-link" onclick="openDocumentModal('terms')">📑 Договор оказания услуг</a>
+    <!-- КУРС 2: СЕКРЕТЫ БОГАТСТВА -->
+    <div class="course-card">
+        <img alt="Иллюстрация курса «Секреты Богатства»" class="course-image" loading="lazy" src="https://i.postimg.cc/YSqZqmz2/IMG-0390.jpg"/>
+        <h2 class="course-title">Секреты Богатства</h2>
+        <div class="course-price">
+            <span class="old-price">5000 грн</span>
+            <span class="new-price">499 грн</span>
         </div>
-        <p class="copyright">© 2024 Mr. Grey Billionaire. Все права защищены.</p>
+        <ul class="topics-list">
+            <li>Как управлять финансами</li>
+            <li>Как создать стабильный доход</li>
+            <li>Как достичь финансовой свободы</li>
+            <li>Мышление миллионера</li>
+            <li>Инвестиции для начинающих</li>
+            <li>Финансовая грамотность</li>
+            <li>Создание денежных потоков</li>
+        </ul>
+        <button class="buy-button" onclick="openOrderForm('Секреты Богатства', 499, '001')">Купить курс</button>
     </div>
 
-    <!-- Модальное окно заказа -->
-    <div id="orderModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeOrderForm()">&times;</span>
-            <h2 class="modal-title">Оформление заказа</h2>
-            
-            <form id="orderForm">
-                <input type="hidden" id="selectedCourse" name="course">
-                <input type="hidden" id="selectedPrice" name="price">
-                <input type="hidden" id="selectedCourseId" name="courseId">
-                
-                <div class="form-group">
-                    <label class="form-label" for="fullName">ФИО *</label>
-                    <input type="text" id="fullName" name="fullName" class="form-input" required placeholder="Иванов Иван Иванович">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="phone">Телефон *</label>
-                    <input type="tel" id="phone" name="phone" class="form-input" required placeholder="+380 (XX) XXX-XX-XX">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="telegram">Telegram *</label>
-                    <input type="text" id="telegram" name="telegram" class="form-input" required placeholder="@username">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Выбранный курс</label>
-                    <div id="courseInfo" style="padding: 15px; background: #f8f9fa; border-radius: 10px; font-weight: 600;"></div>
-                </div>
-
-                <!-- Галочка согласия с офертой -->
-                <div class="checkbox-group">
-                    <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
-                    <label for="agreeTerms">
-                        Я соглашаюсь с <a onclick="openDocumentModal('offer')">публичной офертой</a>, 
-                        <a onclick="openDocumentModal('privacy')">политикой конфиденциальности</a> и 
-                        <a onclick="openDocumentModal('terms')">договором оказания услуг</a>
-                    </label>
-                </div>
-                
-                <!-- ИНСТРУКЦИИ ПЕРЕД КНОПКОЙ -->
-                <div class="instructions">
-                    <strong>📨 После оплаты:</strong><br><br>
-                   1. Отправьте скриншот квитанции<br>
-                   2. Фамилию, Имя, Ваш никнейм из Telegram<br>
-                  <strong>
-    <a href="https://t.me/MrGreyCoursesBot" target="_blank" style="color: #d4af37;">
-        ➡️ @MrGreyCoursesBot
-    </a>
-</strong><br><br>
-                
-                    
-                    <strong>🔐 После проверки Вас добавят в Telegram-канал курса.</strong>
-                </div>
-                
-                <!-- ЗЕЛЕНАЯ КНОПКА КУПИТЬ -->
-                <button type="submit" class="submit-button" id="submitButton">
-                    Купить
-                </button>
-                
-                <div class="loading" id="loading">
-                    Отправляем заявку...
-                </div>
-                
-                <div class="success-message" id="successMessage">
-                    <!-- Будет заполнено после оплаты -->
-                </div>
-
-                <div class="error-message" id="errorMessage">
-                    ❌ Ошибка отправки. Пожалуйста, попробуйте еще раз.
-                </div>
-            </form>
+    <!-- КУРС 3: КАК ДОСТИГАТЬ ЦЕЛИ -->
+    <div class="course-card">
+        <img alt="Иллюстрация курса «Как достигать Цели»" class="course-image" loading="lazy" src="https://i.postimg.cc/yYmbmTfm/IMG-0391.jpg"/>
+        <h2 class="course-title">Как достигать Цели</h2>
+        <div class="course-price">
+            <span class="old-price">3000 грн</span>
+            <span class="new-price">399 грн</span>
         </div>
+        <ul class="topics-list">
+            <li>Как ставить цели правильно</li>
+            <li>Как планировать и действовать</li>
+            <li>Как реализовать мечты</li>
+            <li>Планирование и дисциплина</li>
+            <li>Как преодолевать препятствия</li>
+            <li>Как сохранять мотивацию</li>
+            <li>Как доводить начатое до конца</li>
+        </ul>
+        <button class="buy-button" onclick="openOrderForm('Как достигать Цели', 399, '003')">Купить курс</button>
     </div>
 
-    <!-- Модальное окно для документов -->
-    <div id="docsModal" class="modal docs-modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeDocumentModal()">&times;</span>
-            <h2 class="modal-title" id="docsTitle">Документ</h2>
-            <div class="docs-content" id="docsContent">
-                <!-- Содержимое будет заполнено динамически -->
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Safari detection and cache busting
+</div>
+</div>
+<div class="footer"><div class="footer-benefits"><div class="footer-benefit"><span class="footer-benefit-icon">💎</span>Личностный рост</div><div class="footer-benefit"><span class="footer-benefit-icon">📈</span>Финансовая свобода</div><div class="footer-benefit"><span class="footer-benefit-icon">🏆</span>Успех и достижения</div></div><p class="footer-slogan">Инвестируй в себя — создавай жизнь мечты!</p>
+<div class="footer-links">
+<a class="footer-link" onclick="openDocumentModal('offer')">📄 Публичная оферта</a>
+<a class="footer-link" onclick="openDocumentModal('privacy')">🔒 Политика конфиденциальности</a>
+<a class="footer-link" onclick="openDocumentModal('terms')">📑 Договор оказания услуг</a>
+</div>
+<p class="copyright">© 2024 Mr. Grey Billionaire. Все права защищены.</p>
+</div>
+<div class="modal" id="orderModal">
+<div class="modal-content">
+<span class="close" onclick="closeOrderForm()">×</span>
+<h2 class="modal-title">Оформление заказа</h2>
+<form id="orderForm">
+<div class="form-group">
+<label class="form-label" for="customerName">Имя *</label>
+<input autocomplete="given-name" class="form-input" id="customerName" name="customerName" placeholder="Ваше имя" required="" type="text"/>
+</div>
+<div class="form-group">
+<label class="form-label" for="telegram">Telegram *</label>
+<input class="form-input" id="telegram" name="telegram" placeholder="@username" required="" type="text"/>
+</div>
+<div class="form-group">
+<label class="form-label">Выбранный курс</label>
+<div id="courseInfo" style="padding: 15px; background: #f8f9fa; border-radius: 10px; font-weight: 600;"></div>
+</div>
+<div class="checkbox-group">
+<input id="agreeTerms" name="agreeTerms" required="" type="checkbox"/>
+<label for="agreeTerms">Я соглашаюсь с <a onclick="openDocumentModal('offer')">публичной офертой</a>, <a onclick="openDocumentModal('privacy')">политикой конфиденциальности</a> и <a onclick="openDocumentModal('terms')">договором оказания услуг</a></label>
+</div>
+<div class="instructions">
+<strong>📨 После оплаты:</strong><br/><br/>
+                    1. Отправьте скриншот квитанции и номер заявки<br/><br/>
+                    2. Укажите имя и ваш никнейм Telegram секретарю Mr.Grey:<br/>
+<strong><a href="https://t.me/MrGreyCoursesBot" rel="noopener noreferrer" style="color: #d4af37;" target="_blank">@MrGreyCoursesBot</a></strong><br/><br/>
+<strong>🔐 После проверки оплаты вас добавят в Telegram-канал соответствующего курса.</strong>
+</div>
+<button class="submit-button" id="submitButton" type="submit">Продолжить к оплате</button>
+<div class="loading" id="loading">Отправляем заявку...</div>
+<div class="success-message" id="successMessage"></div>
+<div class="error-message" id="errorMessage">❌ Ошибка отправки. Пожалуйста, попробуйте ещё раз.</div>
+</form>
+</div>
+</div>
+<div class="modal docs-modal" id="docsModal">
+<div class="modal-content">
+<span class="close" onclick="closeDocumentModal()">×</span>
+<h2 class="modal-title" id="docsTitle">Документ</h2>
+<div class="docs-content" id="docsContent"></div>
+</div>
+</div>
+<script>
+        // ВНИМАНИЕ: Токен бота находится в открытом коде. Рекомендуется перенести отправку на сервер.
         if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
-            const currentVersion = "2.8";
+            const currentVersion = "2.9";
             const savedVersion = localStorage.getItem('site_version');
-            
             if (savedVersion !== currentVersion) {
                 localStorage.setItem('site_version', currentVersion);
-                if (performance.navigation.type === 1) {
-                    console.log('Safari: forcing cache refresh for new version');
-                    location.reload(true);
-                }
+                if (performance.navigation && performance.navigation.type === 1) location.reload(true);
             }
         }
-// СОХРАНЕНИЕ СЧЕТЧИКА ЗАЯВОК В LOCALSTORAGE
-// Проверяем, есть ли уже сохраненный счетчик
-let applicationCounter = parseInt(localStorage.getItem('mrGreyAppCounter')) || 1;
 
-// Функция для получения и увеличения номера заявки
-function getNextApplicationNumber() {
-    const nextNumber = applicationCounter;
-    applicationCounter++; // Увеличиваем для следующей заявки
-    // Сохраняем новое значение в localStorage
-    localStorage.setItem('mrGreyAppCounter', applicationCounter.toString());
-    return String(nextNumber).padStart(3, '0'); // Возвращаем в формате 001
-}
         let currentCourse = '';
         let currentPrice = 0;
         let currentCourseId = '';
+        let applicationCounter = 1;
 
-        // Тексты документов
         const documents = {
             offer: {
                 title: '📄 ПУБЛИЧНАЯ ОФЕРТА',
                 content: `
                     <h3>1. ОБЩИЕ ПОЛОЖЕНИЯ</h3>
-                    <p>1.1. Данный документ является официальным предложением (публичной офертой) TM Mr.Grey (далее — Исполнитель) заключить Договор на оказание информационно-консультационных услуг.</p>
+                    <p>1.1. Данный документ является предложением TM Mr.Grey (далее — Исполнитель) заключить договор на оказание информационно-консультационных услуг.</p>
                     <p>1.2. Акцептом оферты является полная оплата Заказчиком выбранного курса.</p>
-
                     <h3>2. ПРЕДМЕТ ДОГОВОРА</h3>
-                    <p>2.1. Исполнитель предоставляет доступ к информационным материалам курса</p>
-                    <p>2.2. Формат предоставления услуг: записи видеоуроков, текстовые материалы, домашние задания.</p>
-
+                    <p>2.1. Исполнитель предоставляет доступ к информационным материалам выбранного курса.</p>
+                    <p>2.2. Формат предоставления услуг: видеозаписи и иные учебные материалы в Telegram-канале.</p>
                     <h3>3. ПОРЯДОК ОПЛАТЫ И ДОСТУПА</h3>
-                    <p>3.1. Доступ к материалам предоставляется после проверки поступления оплаты.</p>
-                    <p>3.2. Срок доступа к материалам: бессрочно.</p>
-
+                    <p>3.1. Доступ предоставляется после проверки поступления оплаты.</p>
+                    <p>3.2. Срок доступа к материалам: бессрочно, если иное не указано в описании курса.</p>
                     <h3>4. ВОЗВРАТ СРЕДСТВ</h3>
-                    <p>4.1. Возврат денежных средств не предусмотрен после получения доступа к материалам курса.</p>
-                    <p>4.2. Исключение: техническая невозможность предоставления доступа по вине Исполнителя.</p>
-
+                    <p>4.1. Условия возврата определяются применимым законодательством и обстоятельствами оказания услуги. До публикации оферты этот раздел необходимо проверить и заполнить с учётом законодательства Украины.</p>
                     <h3>5. АВТОРСКИЕ ПРАВА</h3>
-                    <p>5.1. Все материалы курса защищены авторским правом.</p>
-                    <p>5.2. Запрещено копирование, распространение и перепродажа материалов.</p>
+                    <p>5.1. Материалы курса защищены авторским правом. Их копирование, распространение и перепродажа без разрешения правообладателя запрещены.</p>
                 `
             },
             privacy: {
                 title: '🔒 ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ',
                 content: `
-                    <h3>1. СОБИРАЕМАЯ ИНФОРМАЦИЯ</h3>
+                    <h3>1. КАКИЕ ДАННЫЕ СОБИРАЮТСЯ</h3>
                     <ul>
-                        <li>ФИО, телефон, Telegram аккаунт</li>
-                        <li>Данные о пройденных уроках и прогрессе</li>
+                        <li>Имя покупателя</li>
+                        <li>Имя пользователя Telegram</li>
+                        <li>Информация о выбранном курсе и заказе</li>
+                        <li>Информация, необходимая для проверки оплаты</li>
                     </ul>
-
-                    <h3>2. ИСПОЛЬЗОВАНИЕ ИНФОРМАЦИИ</h3>
+                    <h3>2. ДЛЯ ЧЕГО ИСПОЛЬЗУЮТСЯ ДАННЫЕ</h3>
                     <ul>
-                        <li>Предоставление доступа к курсу</li>
-                        <li>Отправка уведомлений и обновлений</li>
-                        <li>Техническая поддержка</li>
+                        <li>Обработка заказа и проверка оплаты</li>
+                        <li>Предоставление доступа к соответствующему курсу</li>
+                        <li>Связь с покупателем по вопросам заказа и технической поддержки</li>
                     </ul>
-
-                    <h3>3. ЗАЩИТА ДАННЫХ</h3>
-                    <ul>
-                        <li>Не передаем данные третьим лицам</li>
-                    </ul>
+                    <h3>3. ПЕРЕДАЧА И ЗАЩИТА ДАННЫХ</h3>
+                    <p>Данные заказа передаются через Telegram для обработки заявки. Не собирайте и не запрашивайте данные банковской карты на этом сайте. Порядок хранения, сроки удаления и возможная передача данных третьим лицам должны быть уточнены владельцем сайта до публикации политики.</p>
                 `
             },
             terms: {
                 title: '📑 ДОГОВОР ОКАЗАНИЯ УСЛУГ',
                 content: `
                     <h3>1. СРОКИ ОКАЗАНИЯ УСЛУГ</h3>
-                    <ul>
-                        <li>Доступ к материалам: после проверки поступления оплаты</li>
-                    </ul>
-
+                    <ul><li>Доступ к материалам предоставляется после проверки поступления оплаты.</li></ul>
                     <h3>2. ОБЯЗАННОСТИ СТОРОН</h3>
                     <p><strong>Исполнитель обязуется:</strong></p>
-                    <ul>
-                        <li>Предоставить доступ к материалам</li>
-                    </ul>
-
+                    <ul><li>Предоставить оплаченный доступ к материалам выбранного курса.</li></ul>
                     <p><strong>Заказчик обязуется:</strong></p>
-                    <ul>
-                        <li>Не распространять материалы курса</li>
-                        <li>Соблюдать авторские права</li>
-                    </ul>
-
+                    <ul><li>Не распространять материалы курса и соблюдать авторские права.</li></ul>
                     <h3>3. ОТВЕТСТВЕННОСТЬ</h3>
-                    <p>3.1. Исполнитель не гарантирует конкретные результаты обучения.</p>
-                    <p>3.2. Заказчик несет ответственность за несанкционированное распространение материалов.</p>
+                    <p>Исполнитель не гарантирует конкретные финансовые, карьерные или иные результаты обучения. Результаты зависят от действий и обстоятельств Заказчика.</p>
                 `
             }
         };
@@ -745,169 +266,118 @@ function getNextApplicationNumber() {
             document.getElementById('docsContent').innerHTML = documents[docType].content;
             document.getElementById('docsModal').style.display = 'flex';
         }
-
-        function closeDocumentModal() {
-            document.getElementById('docsModal').style.display = 'none';
-        }
+        function closeDocumentModal() { document.getElementById('docsModal').style.display = 'none'; }
 
         function openOrderForm(courseName, price, courseId) {
             currentCourse = courseName;
             currentPrice = price;
             currentCourseId = courseId;
-            
-            document.getElementById('selectedCourse').value = courseName;
-            document.getElementById('selectedPrice').value = price;
-            document.getElementById('selectedCourseId').value = courseId;
-            document.getElementById('courseInfo').textContent = `${courseName} - ${price} грн`;
-            
             document.getElementById('orderForm').reset();
+            document.getElementById('courseInfo').textContent = `${courseName} — ${price} грн`;
             document.getElementById('loading').style.display = 'none';
             document.getElementById('successMessage').style.display = 'none';
             document.getElementById('errorMessage').style.display = 'none';
             document.getElementById('submitButton').disabled = false;
-            document.getElementById('agreeTerms').checked = false;
-            
             document.getElementById('orderModal').style.display = 'flex';
         }
-
-        function closeOrderForm() {
-            document.getElementById('orderModal').style.display = 'none';
-        }
+        function closeOrderForm() { document.getElementById('orderModal').style.display = 'none'; }
 
         document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
             if (!document.getElementById('agreeTerms').checked) {
-                alert('Пожалуйста, согласитесь с условиями оферты');
+                alert('Пожалуйста, согласитесь с условиями документов.');
                 return;
             }
-            
+
             const submitButton = document.getElementById('submitButton');
             const loading = document.getElementById('loading');
             const successMessage = document.getElementById('successMessage');
             const errorMessage = document.getElementById('errorMessage');
-            
             submitButton.disabled = true;
             loading.style.display = 'block';
             successMessage.style.display = 'none';
             errorMessage.style.display = 'none';
-            
-           const applicationNumber = getNextApplicationNumber();
-            const currentDate = new Date();
-            const dateString = `${String(currentDate.getDate()).padStart(2, '0')}${String(currentDate.getMonth() + 1).padStart(2, '0')}`;
+
+            const applicationNumber = String(applicationCounter++).padStart(3, '0');
+            const now = new Date();
+            const dateString = `${String(now.getDate()).padStart(2, '0')}${String(now.getMonth() + 1).padStart(2, '0')}`;
             const applicationId = `${applicationNumber}_${dateString}`;
-            
             const formData = {
-                applicationNumber: applicationNumber,
-                applicationId: applicationId,
-                fullName: document.getElementById('fullName').value,
-                phone: document.getElementById('phone').value,
-                telegram: document.getElementById('telegram').value,
+                applicationNumber,
+                applicationId,
+                customerName: document.getElementById('customerName').value.trim(),
+                telegram: document.getElementById('telegram').value.trim(),
                 course: currentCourse,
                 courseId: currentCourseId,
                 price: currentPrice,
-                timestamp: new Date().toLocaleString('uk-UA')
+                timestamp: now.toLocaleString('uk-UA')
             };
-            
-            // Форматируем сообщение для Telegram
+
             const telegramMessage = `
 🆕 ЗАЯВКА #${formData.applicationNumber}
 ──────────────
-👤 ФИО: ${formData.fullName}
-📞 Телефон: ${formData.phone}
+👤 Имя: ${formData.customerName}
 📱 Telegram: ${formData.telegram}
 🎓 Курс: ${formData.course}
 💰 Сумма: ${formData.price} грн
 🆔 ID: ${formData.applicationId}
 🕐 Дата: ${formData.timestamp}
             `.trim();
-            
-            // Правильный формат для Telegram API
-            const telegramUrl = `https://api.telegram.org/bot8318808737:AAHr5TRgDJWbzYbNxv1nMy3zhAEH5W9_XgQ/sendMessage`;
-            
-            // Используем URL параметры для надежности
+
+            const telegramUrl = 'https://api.telegram.org/bot8318808737:AAHr5TRgDJWbzYbNxv1nMy3zhAEH5W9_XgQ/sendMessage';
             const params = new URLSearchParams({
                 chat_id: '1700615936',
-                text: telegramMessage,
-                parse_mode: 'HTML'
+                text: telegramMessage
             });
-            
-            fetch(`${telegramUrl}?${params}`, {
-                method: 'POST'
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('✅ Данные отправлены в Telegram:', data);
-                
-                loading.style.display = 'none';
-               // ОПРЕДЕЛЯЕМ ССЫЛКУ ДЛЯ ОПЛАТЫ - ВСЕ ССЫЛКИ ДОБАВЛЕНЫ
-                let paymentUrl = 'https://send.monobank.ua/jar/iAotyRB15';
-                if (formData.courseId === '001') {
-                    paymentUrl = 'https://send.monobank.ua/jar/87iGHDjBx8';
-                } else if (formData.courseId === '002') {
-                    paymentUrl = 'https://send.monobank.ua/jar/iAotyRB15';
-                } else if (formData.courseId === '003') {
-                    paymentUrl = 'https://send.monobank.ua/jar/8DtbgApXf6';
-                }
 
-                successMessage.innerHTML = `
-                    <div style="text-align: center;">
-                        <div style="font-size: 24px; color: #2d5016; margin-bottom: 15px;">✅ Заявка #${formData.applicationNumber} принята!</div>
-                        <div style="background: white; padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #d4af37;">
+            fetch(`${telegramUrl}?${params}`, { method: 'POST' })
+                .then(response => {
+                    if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+                    return response.json();
+                })
+                .then(data => {
+                    if (!data.ok) throw new Error(data.description || 'Telegram API error');
+                    loading.style.display = 'none';
+
+                    let paymentUrl = 'https://send.monobank.ua/jar/iAotyRB15';
+                    if (formData.courseId === '001') paymentUrl = 'https://send.monobank.ua/jar/87iGHDjBx8';
+                    else if (formData.courseId === '002') paymentUrl = 'https://send.monobank.ua/jar/iAotyRB15';
+                    else if (formData.courseId === '003') paymentUrl = 'https://send.monobank.ua/jar/8DtbgApXf6';
+
+                    successMessage.innerHTML = `
+                        <div style="font-size:24px; margin-bottom:12px;">✅ Заявка #${formData.applicationNumber} отправлена!</div>
+                        <div style="background:white; padding:15px; border-radius:10px; margin:15px 0;">
                             <strong>💳 Оплатите ${formData.price} грн:</strong><br>
-                            <a href="${paymentUrl}" target="_blank" style="color: #d4af37; text-decoration: underline; font-weight: bold;">
-                                ${paymentUrl}
-                            </a>
+                            <a href="${paymentUrl}" target="_blank" rel="noopener noreferrer" style="color:#d4af37; font-weight:bold;">Перейти к оплате</a>
                         </div>
-                        <div style="color: #666; font-size: 14px; margin-top: 10px;">
-                            Номер вашей заявки: #${formData.applicationNumber}<br>
-                            Сохраните номер заявки
-                        </div>
-                    </div>
-                `;
-                successMessage.style.display = 'block';
+                        <div style="font-size:14px; color:#666;">Сохраните номер заявки: #${formData.applicationNumber}. После оплаты отправьте подтверждение администратору в Telegram.</div>
+                    `;
+                    successMessage.style.display = 'block';
 
-                // Открываем оплату
-                const newWindow = window.open(paymentUrl, '_blank');
-                if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
-                    window.location.href = paymentUrl;
-                }
-            })
-            .catch(error => {
-                console.error('❌ Ошибка отправки в Telegram:', error);
-                loading.style.display = 'none';
-                errorMessage.style.display = 'block';
-                submitButton.disabled = false;
-            });
+                    const paymentWindow = window.open(paymentUrl, '_blank', 'noopener');
+                    if (!paymentWindow) window.location.href = paymentUrl;
+                })
+                .catch(error => {
+                    console.error('Ошибка отправки в Telegram:', error);
+                    loading.style.display = 'none';
+                    errorMessage.style.display = 'block';
+                    submitButton.disabled = false;
+                });
         });
 
-        window.onclick = function(event) {
-            const modal = document.getElementById('orderModal');
+        window.addEventListener('click', function(event) {
+            const orderModal = document.getElementById('orderModal');
             const docsModal = document.getElementById('docsModal');
-            if (event.target === modal) {
-                closeOrderForm();
-            }
-            if (event.target === docsModal) {
-                closeDocumentModal();
-            }
-        }
-
+            if (event.target === orderModal) closeOrderForm();
+            if (event.target === docsModal) closeDocumentModal();
+        });
         document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeOrderForm();
-                closeDocumentModal();
-            }
+            if (event.key === 'Escape') { closeOrderForm(); closeDocumentModal(); }
         });
 
-        // Mr. Grey Courses v2.8 - добавлены документы
-        const version = "2.8";
-        console.log(`🚀 Mr. Grey Courses v${version} - with legal documents`);
-        localStorage.setItem('site_version', version);
+        localStorage.setItem('site_version', '2.9');
+        console.log('Mr. Grey Courses v2.9');
     </script>
 </body>
 </html>
+```
