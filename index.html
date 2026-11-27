@@ -77,9 +77,9 @@
 <div class="header"><h1 class="main-title">Mr. Grey Billionaire</h1></div>
 <div class="courses-grid">
 
-    <!-- КУРС 1 -->
+    <!-- КУРС 1: ТВОЁ ПРЕДНАЗНАЧЕНИЕ -->
     <div class="course-card">
-        <img alt="Курс" class="course-image" loading="lazy" src="https://i.postimg.cc/vT3GDd65/IMG-0389.jpg"/>
+        <img alt="Иллюстрация курса «Твоё Предназначение»" class="course-image" loading="lazy" src="https://i.postimg.cc/vT3GDd65/IMG-0389.jpg"/>
         <h2 class="course-title" id="title-002"></h2>
         <div class="course-price">
             <span class="old-price" id="old-002"></span>
@@ -97,9 +97,9 @@
         <button class="buy-button" onclick="openOrderForm('002')">Хочу!</button>
     </div>
 
-    <!-- КУРС 2 -->
+    <!-- КУРС 2: СЕКРЕТЫ БОГАТСТВА -->
     <div class="course-card">
-        <img alt="Курс" class="course-image" loading="lazy" src="https://i.postimg.cc/YSqZqmz2/IMG-0390.jpg"/>
+        <img alt="Иллюстрация курса «Секреты Богатства»" class="course-image" loading="lazy" src="https://i.postimg.cc/YSqZqmz2/IMG-0390.jpg"/>
         <h2 class="course-title" id="title-001"></h2>
         <div class="course-price">
             <span class="old-price" id="old-001"></span>
@@ -117,9 +117,9 @@
         <button class="buy-button" onclick="openOrderForm('001')">Хочу!</button>
     </div>
 
-    <!-- КУРС 3 -->
+    <!-- КУРС 3: КАК ДОСТИГАТЬ ЦЕЛИ -->
     <div class="course-card">
-        <img alt="Курс" class="course-image" loading="lazy" src="https://i.postimg.cc/yYmbmTfm/IMG-0391.jpg"/>
+        <img alt="Иллюстрация курса «Как достигать Цели»" class="course-image" loading="lazy" src="https://i.postimg.cc/yYmbmTfm/IMG-0391.jpg"/>
         <h2 class="course-title" id="title-003"></h2>
         <div class="course-price">
             <span class="old-price" id="old-003"></span>
@@ -217,7 +217,7 @@
         let currentPrice = 0;
         let currentCourseId = '';
         let applicationCounter = 1;
-        let lastSubmitTime = 0; 
+        let lastSubmitTime = 0; // Защита от спама
 
         // Автозаполнение карточек курсов при загрузке страницы
         document.addEventListener('DOMContentLoaded', () => {
@@ -235,6 +235,7 @@
             });
         });
 
+        // Функция для экранирования HTML (защита от XSS)
         function escapeHTML(str) {
             return str.replace(/[&<>'"]/g, 
                 tag => ({
@@ -333,6 +334,7 @@
         document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
+            // --- ЗАЩИТА ОТ СПАМА (1 МИНУТА) ---
             const nowTime = Date.now();
             if (nowTime - lastSubmitTime < 60000) {
                 const secondsLeft = Math.ceil((60000 - (nowTime - lastSubmitTime)) / 1000);
@@ -350,6 +352,7 @@
             const successMessage = document.getElementById('successMessage');
             const errorMessage = document.getElementById('errorMessage');
             
+            // Валидация полей (дополнительно к HTML5)
             const rawName = document.getElementById('customerName').value.trim();
             const rawTelegram = document.getElementById('telegram').value.trim();
             
@@ -364,6 +367,7 @@
                 return;
             }
             
+            // Экранирование для безопасности
             const safeName = escapeHTML(rawName);
             const safeTelegram = escapeHTML(rawTelegram);
 
@@ -399,6 +403,7 @@
 🕐 Дата: ${formData.timestamp}
             `.trim();
 
+            // ВНИМАНИЕ: Токен должен быть на сервере! Здесь оставлен для примера.
             const telegramUrl = 'https://api.telegram.org/bot8556748976:AAELSzNBuhtPJTE0kLgh8yGVaX8J9ziC7V4/sendMessage';
             const params = new URLSearchParams({
                 chat_id: '1700615936',
@@ -414,7 +419,7 @@
                     if (!data.ok) throw new Error(data.description || 'Telegram API error');
                     loading.style.display = 'none';
                     
-                    lastSubmitTime = Date.now();
+                    lastSubmitTime = Date.now(); // Запускаем таймер только после успеха
 
                     const paymentUrl = COURSES[formData.courseId].jar;
 
@@ -423,10 +428,12 @@
                         <div style="font-size:14px; color:#555; margin-bottom:15px;">Ваш номер: <b>#${formData.applicationNumber}</b>. Он понадобится для проверки.</div>
                         
                         <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <!-- Кнопка оплаты -->
                             <a href="${paymentUrl}" target="_blank" rel="noopener noreferrer" style="display:block; text-align:center; background: linear-gradient(135deg, #f5d76e 0%, #d4af37 48%, #b8860b 100%); color: #fff; padding: 15px; border-radius: 10px; font-weight: bold; text-decoration: none;">
                                 💳 Оплатить ${formData.price} грн
                             </a>
                             
+                            <!-- Кнопка отправки чека в группу -->
                             <a href="https://t.me/+LsJb7pmIoY1jODI6" target="_blank" rel="noopener noreferrer" style="display:block; text-align:center; background: #0088cc; color: #fff; padding: 15px; border-radius: 10px; font-weight: bold; text-decoration: none;">
                                 📸 Я оплатил, отправить чек
                             </a>
@@ -455,6 +462,9 @@
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') { closeOrderForm(); closeDocumentModal(); }
         });
+
+        localStorage.setItem('site_version', '8.0');
+        console.log('Mr. Grey Courses v8.0');
     </script>
 </body>
 </html>
