@@ -1,5 +1,5 @@
 
-```html
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -44,6 +44,7 @@
     .form-label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; }
     .form-input { width: 100%; padding: 15px; border: 2px solid #e8e2d6; border-radius: 10px; font-size: 16px; transition: border-color .3s ease; }
     .form-input:focus { outline: none; border-color: #d4af37; }
+    .form-input:invalid:not(:placeholder-shown) { border-color: #ff6b6b; }
     .checkbox-group { display: flex; align-items: flex-start; gap: 10px; margin: 20px 0; padding: 15px; background: #f8f9fa; border-radius: 10px; }
     .checkbox-group input[type="checkbox"] { margin-top: 3px; transform: scale(1.2); }
     .checkbox-group label { font-size: 14px; line-height: 1.4; }
@@ -83,8 +84,8 @@
         <img alt="Иллюстрация курса «Твоё Предназначение»" class="course-image" loading="lazy" src="https://i.postimg.cc/vT3GDd65/IMG-0389.jpg"/>
         <h2 class="course-title">Твоё Предназначение</h2>
         <div class="course-price">
-            <span class="old-price">2000 грн</span>
-            <span class="new-price">299 грн</span>
+            <span class="old-price">3000 грн</span>
+            <span class="new-price">500грн</span>
         </div>
         <ul class="topics-list">
             <li>Как найти своё предназначение</li>
@@ -95,7 +96,7 @@
             <li>Как обрести внутреннюю гармонию</li>
             <li>Как реализовать себя в жизни</li>
         </ul>
-        <button class="buy-button" onclick="openOrderForm('Твоё Предназначение', 299, '002')">Купить курс</button>
+        <button class="buy-button" onclick="openOrderForm('002')">Хочу!</button>
     </div>
 
     <!-- КУРС 2: СЕКРЕТЫ БОГАТСТВА -->
@@ -104,7 +105,7 @@
         <h2 class="course-title">Секреты Богатства</h2>
         <div class="course-price">
             <span class="old-price">5000 грн</span>
-            <span class="new-price">499 грн</span>
+            <span class="new-price">1000 грн</span>
         </div>
         <ul class="topics-list">
             <li>Как управлять финансами</li>
@@ -115,7 +116,7 @@
             <li>Финансовая грамотность</li>
             <li>Создание денежных потоков</li>
         </ul>
-        <button class="buy-button" onclick="openOrderForm('Секреты Богатства', 499, '001')">Купить курс</button>
+        <button class="buy-button" onclick="openOrderForm('001')">Хочу!</button>
     </div>
 
     <!-- КУРС 3: КАК ДОСТИГАТЬ ЦЕЛИ -->
@@ -124,7 +125,7 @@
         <h2 class="course-title">Как достигать Цели</h2>
         <div class="course-price">
             <span class="old-price">3000 грн</span>
-            <span class="new-price">399 грн</span>
+            <span class="new-price">450 грн</span>
         </div>
         <ul class="topics-list">
             <li>Как ставить цели правильно</li>
@@ -135,7 +136,7 @@
             <li>Как сохранять мотивацию</li>
             <li>Как доводить начатое до конца</li>
         </ul>
-        <button class="buy-button" onclick="openOrderForm('Как достигать Цели', 399, '003')">Купить курс</button>
+        <button class="buy-button" onclick="openOrderForm('003')">Хочу!</button>
     </div>
 
 </div>
@@ -155,11 +156,11 @@
 <form id="orderForm">
 <div class="form-group">
 <label class="form-label" for="customerName">Имя *</label>
-<input autocomplete="given-name" class="form-input" id="customerName" name="customerName" placeholder="Ваше имя" required="" type="text"/>
+<input autocomplete="given-name" class="form-input" id="customerName" name="customerName" placeholder="Ваше имя (от 2 до 50 символов)" required="" type="text" minlength="2" maxlength="50" pattern="^[A-Za-zА-Яа-яЁёІіЇїЄєҐґ\s\-]{2,50}$" title="Только буквы, пробелы и дефисы (2-50 символов)"/>
 </div>
 <div class="form-group">
 <label class="form-label" for="telegram">Telegram *</label>
-<input class="form-input" id="telegram" name="telegram" placeholder="@username" required="" type="text"/>
+<input class="form-input" id="telegram" name="telegram" placeholder="@username" required="" type="text" minlength="4" maxlength="33" pattern="^@?[a-zA-Z0-9_]{3,32}$" title="Никнейм Telegram (3-32 символа, буквы, цифры, _)"/>
 </div>
 <div class="form-group">
 <label class="form-label">Выбранный курс</label>
@@ -176,7 +177,7 @@
 <strong><a href="https://t.me/MrGreyCoursesBot" rel="noopener noreferrer" style="color: #d4af37;" target="_blank">@MrGreyCoursesBot</a></strong><br/><br/>
 <strong>🔐 После проверки оплаты вас добавят в Telegram-канал соответствующего курса.</strong>
 </div>
-<button class="submit-button" id="submitButton" type="submit">Продолжить к оплате</button>
+<button class="submit-button" id="submitButton" type="submit">Создать заявку и перейти к оплате</button>
 <div class="loading" id="loading">Отправляем заявку...</div>
 <div class="success-message" id="successMessage"></div>
 <div class="error-message" id="errorMessage">❌ Ошибка отправки. Пожалуйста, попробуйте ещё раз.</div>
@@ -191,20 +192,44 @@
 </div>
 </div>
 <script>
-        // ВНИМАНИЕ: Токен бота находится в открытом коде. Рекомендуется перенести отправку на сервер.
-        if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
-            const currentVersion = "2.9";
-            const savedVersion = localStorage.getItem('site_version');
-            if (savedVersion !== currentVersion) {
-                localStorage.setItem('site_version', currentVersion);
-                if (performance.navigation && performance.navigation.type === 1) location.reload(true);
+        // ===== ВСЕ ДАННЫЕ О КУРСАХ ТУТ =====
+        const COURSES = {
+            '001': { 
+                name: 'Секреты Богатства', 
+                price: 1000, 
+                jar: 'https://send.monobank.ua/jar/87iGHDjBx8' 
+            },
+            '002': { 
+                name: 'Твоё Предназначение', 
+                price: 500, 
+                jar: 'https://send.monobank.ua/jar/iAotyRB15' 
+            },
+            '003': { 
+                name: 'Как достигать Цели', 
+                price: 450, 
+                jar: 'https://send.monobank.ua/jar/8DtbgApXf6' 
             }
-        }
+        };
+        // ====================================
 
         let currentCourse = '';
         let currentPrice = 0;
         let currentCourseId = '';
         let applicationCounter = 1;
+        let lastSubmitTime = 0; // Защита от спама
+
+        // Функция для экранирования HTML (защита от XSS)
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    "'": '&#39;',
+                    '"': '&quot;'
+                }[tag] || tag)
+            );
+        }
 
         const documents = {
             offer: {
@@ -220,9 +245,9 @@
                     <p>3.1. Доступ предоставляется после проверки поступления оплаты.</p>
                     <p>3.2. Срок доступа к материалам: бессрочно, если иное не указано в описании курса.</p>
                     <h3>4. ВОЗВРАТ СРЕДСТВ</h3>
-                    <p>4.1. Условия возврата определяются применимым законодательством и обстоятельствами оказания услуги. До публикации оферты этот раздел необходимо проверить и заполнить с учётом законодательства Украины.</p>
+                    <p>4.1. Условия возврата не предусмотрены, т.к. данный информационный продукт является авторским правом и как только он вам будет предоставлен, то то считается что услуга оказана.</p>
                     <h3>5. АВТОРСКИЕ ПРАВА</h3>
-                    <p>5.1. Материалы курса защищены авторским правом. Их копирование, распространение и перепродажа без разрешения правообладателя запрещены.</p>
+                    <p>5.1. Материалы курса защищены авторским правом. Их копирование, распространение, копирование, предоставление ссылок на закрытые группы и перепродажа без разрешения правообладателя запрещены.</p>
                 `
             },
             privacy: {
@@ -242,7 +267,7 @@
                         <li>Связь с покупателем по вопросам заказа и технической поддержки</li>
                     </ul>
                     <h3>3. ПЕРЕДАЧА И ЗАЩИТА ДАННЫХ</h3>
-                    <p>Данные заказа передаются через Telegram для обработки заявки. Не собирайте и не запрашивайте данные банковской карты на этом сайте. Порядок хранения, сроки удаления и возможная передача данных третьим лицам должны быть уточнены владельцем сайта до публикации политики.</p>
+                    <p>Данные заказа передаются через Telegram для обработки заявки. Не собираются и не запрашиваются данные вашей банковской карты на этом сайте.</p>
                 `
             },
             terms: {
@@ -268,12 +293,19 @@
         }
         function closeDocumentModal() { document.getElementById('docsModal').style.display = 'none'; }
 
-        function openOrderForm(courseName, price, courseId) {
-            currentCourse = courseName;
-            currentPrice = price;
+        function openOrderForm(courseId) {
+            const courseData = COURSES[courseId];
+            if (!courseData) {
+                alert('Ошибка: курс не найден');
+                return;
+            }
+
+            currentCourse = courseData.name;
+            currentPrice = courseData.price;
             currentCourseId = courseId;
+
             document.getElementById('orderForm').reset();
-            document.getElementById('courseInfo').textContent = `${courseName} — ${price} грн`;
+            document.getElementById('courseInfo').textContent = `${currentCourse} — ${currentPrice} грн`;
             document.getElementById('loading').style.display = 'none';
             document.getElementById('successMessage').style.display = 'none';
             document.getElementById('errorMessage').style.display = 'none';
@@ -284,6 +316,15 @@
 
         document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            // --- ЗАЩИТА ОТ СПАМА (1 МИНУТА) ---
+            const nowTime = Date.now();
+            if (nowTime - lastSubmitTime < 60000) {
+                const secondsLeft = Math.ceil((60000 - (nowTime - lastSubmitTime)) / 1000);
+                alert(`⏳ Подождите ${secondsLeft} сек. перед созданием новой заявки.`);
+                return;
+            }
+
             if (!document.getElementById('agreeTerms').checked) {
                 alert('Пожалуйста, согласитесь с условиями документов.');
                 return;
@@ -293,6 +334,26 @@
             const loading = document.getElementById('loading');
             const successMessage = document.getElementById('successMessage');
             const errorMessage = document.getElementById('errorMessage');
+            
+            // Валидация полей (дополнительно к HTML5)
+            const rawName = document.getElementById('customerName').value.trim();
+            const rawTelegram = document.getElementById('telegram').value.trim();
+            
+            if (rawName.length < 2 || rawName.length > 50) {
+                alert('Имя должно быть от 2 до 50 символов.');
+                return;
+            }
+
+            const tgRegex = /^@?[a-zA-Z0-9_]{3,32}$/;
+            if (!tgRegex.test(rawTelegram)) {
+                alert('Пожалуйста, введите корректный никнейм Telegram (например, @username).');
+                return;
+            }
+            
+            // Экранирование для безопасности
+            const safeName = escapeHTML(rawName);
+            const safeTelegram = escapeHTML(rawTelegram);
+
             submitButton.disabled = true;
             loading.style.display = 'block';
             successMessage.style.display = 'none';
@@ -302,11 +363,12 @@
             const now = new Date();
             const dateString = `${String(now.getDate()).padStart(2, '0')}${String(now.getMonth() + 1).padStart(2, '0')}`;
             const applicationId = `${applicationNumber}_${dateString}`;
+            
             const formData = {
                 applicationNumber,
                 applicationId,
-                customerName: document.getElementById('customerName').value.trim(),
-                telegram: document.getElementById('telegram').value.trim(),
+                customerName: safeName,
+                telegram: safeTelegram,
                 course: currentCourse,
                 courseId: currentCourseId,
                 price: currentPrice,
@@ -324,6 +386,7 @@
 🕐 Дата: ${formData.timestamp}
             `.trim();
 
+            // ВНИМАНИЕ: Токен должен быть на сервере! Здесь оставлен для примера.
             const telegramUrl = 'https://api.telegram.org/bot8318808737:AAHr5TRgDJWbzYbNxv1nMy3zhAEH5W9_XgQ/sendMessage';
             const params = new URLSearchParams({
                 chat_id: '1700615936',
@@ -338,24 +401,30 @@
                 .then(data => {
                     if (!data.ok) throw new Error(data.description || 'Telegram API error');
                     loading.style.display = 'none';
+                    
+                    lastSubmitTime = Date.now(); // Запускаем таймер только после успеха
 
-                    let paymentUrl = 'https://send.monobank.ua/jar/iAotyRB15';
-                    if (formData.courseId === '001') paymentUrl = 'https://send.monobank.ua/jar/87iGHDjBx8';
-                    else if (formData.courseId === '002') paymentUrl = 'https://send.monobank.ua/jar/iAotyRB15';
-                    else if (formData.courseId === '003') paymentUrl = 'https://send.monobank.ua/jar/8DtbgApXf6';
+                    const paymentUrl = COURSES[formData.courseId].jar;
 
                     successMessage.innerHTML = `
-                        <div style="font-size:24px; margin-bottom:12px;">✅ Заявка #${formData.applicationNumber} отправлена!</div>
-                        <div style="background:white; padding:15px; border-radius:10px; margin:15px 0;">
-                            <strong>💳 Оплатите ${formData.price} грн:</strong><br>
-                            <a href="${paymentUrl}" target="_blank" rel="noopener noreferrer" style="color:#d4af37; font-weight:bold;">Перейти к оплате</a>
+                        <div style="font-size:24px; margin-bottom:12px;">✅ Заявка #${formData.applicationNumber} создана!</div>
+                        <div style="font-size:14px; color:#555; margin-bottom:15px;">Ваш номер заявки: <b>#${formData.applicationNumber}</b> (сохраните его)</div>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <a href="${paymentUrl}" target="_blank" rel="noopener noreferrer" style="display:block; text-align:center; background: linear-gradient(135deg, #f5d76e 0%, #d4af37 48%, #b8860b 100%); color: #fff; padding: 15px; border-radius: 10px; font-weight: bold; text-decoration: none;">
+                                💳 Оплатить ${formData.price} грн
+                            </a>
+                            
+                            <a href="https://t.me/MrGreyCoursesBot" target="_blank" rel="noopener noreferrer" style="display:block; text-align:center; background: #0088cc; color: #fff; padding: 15px; border-radius: 10px; font-weight: bold; text-decoration: none;">
+                                📸 Я оплатил, отправить чек
+                            </a>
                         </div>
-                        <div style="font-size:14px; color:#666;">Сохраните номер заявки: #${formData.applicationNumber}. После оплаты отправьте подтверждение администратору в Telegram.</div>
+                        
+                        <div style="font-size:13px; color:#777; margin-top:15px; line-height:1.4;">
+                            ⚠️ В комментарии к переводу в Monobank укажите номер заявки <b>#${formData.applicationNumber}</b>. Это ускорит проверку.
+                        </div>
                     `;
                     successMessage.style.display = 'block';
-
-                    const paymentWindow = window.open(paymentUrl, '_blank', 'noopener');
-                    if (!paymentWindow) window.location.href = paymentUrl;
                 })
                 .catch(error => {
                     console.error('Ошибка отправки в Telegram:', error);
@@ -375,9 +444,8 @@
             if (event.key === 'Escape') { closeOrderForm(); closeDocumentModal(); }
         });
 
-        localStorage.setItem('site_version', '2.9');
-        console.log('Mr. Grey Courses v2.9');
+        localStorage.setItem('site_version', '3.0');
+        console.log('Mr. Grey Courses v3.0');
     </script>
 </body>
 </html>
-```
