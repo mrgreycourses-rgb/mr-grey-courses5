@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -82,10 +80,10 @@
     <!-- КУРС 1: ТВОЁ ПРЕДНАЗНАЧЕНИЕ -->
     <div class="course-card">
         <img alt="Иллюстрация курса «Твоё Предназначение»" class="course-image" loading="lazy" src="https://i.postimg.cc/vT3GDd65/IMG-0389.jpg"/>
-        <h2 class="course-title">Твоё Предназначение</h2>
+        <h2 class="course-title" id="title-002"></h2>
         <div class="course-price">
-            <span class="old-price">3000 грн</span>
-            <span class="new-price">500грн</span>
+            <span class="old-price" id="old-002"></span>
+            <span class="new-price" id="new-002"></span>
         </div>
         <ul class="topics-list">
             <li>Как найти своё предназначение</li>
@@ -102,10 +100,10 @@
     <!-- КУРС 2: СЕКРЕТЫ БОГАТСТВА -->
     <div class="course-card">
         <img alt="Иллюстрация курса «Секреты Богатства»" class="course-image" loading="lazy" src="https://i.postimg.cc/YSqZqmz2/IMG-0390.jpg"/>
-        <h2 class="course-title">Секреты Богатства</h2>
+        <h2 class="course-title" id="title-001"></h2>
         <div class="course-price">
-            <span class="old-price">5000 грн</span>
-            <span class="new-price">1000 грн</span>
+            <span class="old-price" id="old-001"></span>
+            <span class="new-price" id="new-001"></span>
         </div>
         <ul class="topics-list">
             <li>Как управлять финансами</li>
@@ -122,10 +120,10 @@
     <!-- КУРС 3: КАК ДОСТИГАТЬ ЦЕЛИ -->
     <div class="course-card">
         <img alt="Иллюстрация курса «Как достигать Цели»" class="course-image" loading="lazy" src="https://i.postimg.cc/yYmbmTfm/IMG-0391.jpg"/>
-        <h2 class="course-title">Как достигать Цели</h2>
+        <h2 class="course-title" id="title-003"></h2>
         <div class="course-price">
-            <span class="old-price">3000 грн</span>
-            <span class="new-price">450 грн</span>
+            <span class="old-price" id="old-003"></span>
+            <span class="new-price" id="new-003"></span>
         </div>
         <ul class="topics-list">
             <li>Как ставить цели правильно</li>
@@ -173,8 +171,8 @@
 <div class="instructions">
 <strong>📨 После оплаты:</strong><br/><br/>
                     1. Отправьте скриншот квитанции и номер заявки<br/><br/>
-                    2. Укажите имя и ваш никнейм Telegram секретарю Mr.Grey:<br/>
-<strong><a href="https://t.me/MrGreyCoursesBot" rel="noopener noreferrer" style="color: #d4af37;" target="_blank">@MrGreyCoursesBot</a></strong><br/><br/>
+                    2. Перейдите по ссылке ниже и прикрепите скриншот в нашу группу:<br/>
+<strong><a href="https://t.me/+LsJb7pmIoY1jODI6" rel="noopener noreferrer" style="color: #d4af37;" target="_blank">👉 Группа для отправки чеков</a></strong><br/><br/>
 <strong>🔐 После проверки оплаты вас добавят в Telegram-канал соответствующего курса.</strong>
 </div>
 <button class="submit-button" id="submitButton" type="submit">Создать заявку и перейти к оплате</button>
@@ -197,16 +195,19 @@
             '001': { 
                 name: 'Секреты Богатства', 
                 price: 1000, 
+                oldPrice: 5000,
                 jar: 'https://send.monobank.ua/jar/87iGHDjBx8' 
             },
             '002': { 
                 name: 'Твоё Предназначение', 
                 price: 500, 
+                oldPrice: 3000,
                 jar: 'https://send.monobank.ua/jar/iAotyRB15' 
             },
             '003': { 
                 name: 'Как достигать Цели', 
                 price: 450, 
+                oldPrice: 3000,
                 jar: 'https://send.monobank.ua/jar/8DtbgApXf6' 
             }
         };
@@ -217,6 +218,22 @@
         let currentCourseId = '';
         let applicationCounter = 1;
         let lastSubmitTime = 0; // Защита от спама
+
+        // Автозаполнение карточек курсов при загрузке страницы
+        document.addEventListener('DOMContentLoaded', () => {
+            Object.keys(COURSES).forEach(id => {
+                const course = COURSES[id];
+                
+                const titleEl = document.getElementById(`title-${id}`);
+                if (titleEl) titleEl.textContent = course.name;
+                
+                const newPriceEl = document.getElementById(`new-${id}`);
+                if (newPriceEl) newPriceEl.textContent = `${course.price} грн`;
+                
+                const oldPriceEl = document.getElementById(`old-${id}`);
+                if (oldPriceEl) oldPriceEl.textContent = course.oldPrice ? `${course.oldPrice} грн` : '';
+            });
+        });
 
         // Функция для экранирования HTML (защита от XSS)
         function escapeHTML(str) {
@@ -387,7 +404,7 @@
             `.trim();
 
             // ВНИМАНИЕ: Токен должен быть на сервере! Здесь оставлен для примера.
-            const telegramUrl = 'https://api.telegram.org/bot8318808737:AAHr5TRgDJWbzYbNxv1nMy3zhAEH5W9_XgQ/sendMessage';
+            const telegramUrl = 'https://api.telegram.org/bot8556748976:AAELSzNBuhtPJTE0kLgh8yGVaX8J9ziC7V4/sendMessage';
             const params = new URLSearchParams({
                 chat_id: '1700615936',
                 text: telegramMessage
@@ -407,21 +424,23 @@
                     const paymentUrl = COURSES[formData.courseId].jar;
 
                     successMessage.innerHTML = `
-                        <div style="font-size:24px; margin-bottom:12px;">✅ Заявка #${formData.applicationNumber} создана!</div>
-                        <div style="font-size:14px; color:#555; margin-bottom:15px;">Ваш номер заявки: <b>#${formData.applicationNumber}</b> (сохраните его)</div>
+                        <div style="font-size:24px; margin-bottom:12px; color: #2d5016;">✅ Заявка #${formData.applicationNumber} создана!</div>
+                        <div style="font-size:14px; color:#555; margin-bottom:15px;">Ваш номер: <b>#${formData.applicationNumber}</b>. Он понадобится для проверки.</div>
                         
                         <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <!-- Кнопка оплаты -->
                             <a href="${paymentUrl}" target="_blank" rel="noopener noreferrer" style="display:block; text-align:center; background: linear-gradient(135deg, #f5d76e 0%, #d4af37 48%, #b8860b 100%); color: #fff; padding: 15px; border-radius: 10px; font-weight: bold; text-decoration: none;">
                                 💳 Оплатить ${formData.price} грн
                             </a>
                             
-                            <a href="https://t.me/MrGreyCoursesBot" target="_blank" rel="noopener noreferrer" style="display:block; text-align:center; background: #0088cc; color: #fff; padding: 15px; border-radius: 10px; font-weight: bold; text-decoration: none;">
+                            <!-- Кнопка отправки чека в группу -->
+                            <a href="https://t.me/+LsJb7pmIoY1jODI6" target="_blank" rel="noopener noreferrer" style="display:block; text-align:center; background: #0088cc; color: #fff; padding: 15px; border-radius: 10px; font-weight: bold; text-decoration: none;">
                                 📸 Я оплатил, отправить чек
                             </a>
                         </div>
                         
                         <div style="font-size:13px; color:#777; margin-top:15px; line-height:1.4;">
-                            ⚠️ В комментарии к переводу в Monobank укажите номер заявки <b>#${formData.applicationNumber}</b>. Это ускорит проверку.
+                            ⚠️ В комментарии к переводу в Monobank укажите номер заявки <b>#${formData.applicationNumber}</b>.
                         </div>
                     `;
                     successMessage.style.display = 'block';
@@ -444,8 +463,8 @@
             if (event.key === 'Escape') { closeOrderForm(); closeDocumentModal(); }
         });
 
-        localStorage.setItem('site_version', '3.0');
-        console.log('Mr. Grey Courses v3.0');
+        localStorage.setItem('site_version', '7.0');
+        console.log('Mr. Grey Courses v7.0');
     </script>
 </body>
 </html>
